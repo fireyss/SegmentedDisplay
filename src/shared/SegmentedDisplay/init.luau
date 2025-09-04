@@ -20,7 +20,14 @@ local function MakeSegment()
 	return SegmentTemplate:Clone()
 end
 
-function Display.new(CharHeight: number, CharWidth: number, Scale: number)
+function Display.new(
+	CharHeight: number,
+	CharWidth: number,
+	Options: {
+		GlassDistortion: boolean?,
+		Scale: number?,
+	}?
+)
 	local self = setmetatable({}, Display)
 	self.CharWidth = CharWidth
 	self.CharHeight = CharHeight
@@ -38,10 +45,39 @@ function Display.new(CharHeight: number, CharWidth: number, Scale: number)
 	for y = 0, CharHeight - 1 do
 		for x = 0, CharWidth - 1 do
 			local Segment = MakeSegment()
-			Segment:PivotTo(bcf * CFrame.new((x + 1 - 0.5 * CharWidth) * WIDTH_SCALE, (y + 1 - 0.5 * CharHeight), -0.1))
+			Segment.Pivot.CFrame = (
+				bcf * CFrame.new(-(x + 1 - 0.5 * CharWidth) * WIDTH_SCALE, -(y + 1 - 0.5 * CharHeight), 0.01)
+			)
 			Weld(self.Background, Segment.Pivot)
 			Segment.Parent = self.Model
 			table.insert(self.Segments, Segment)
+		end
+	end
+
+	if Options and Options.GlassDistortion then
+		local bgSize = self.Background.Size
+		local tilesX, tilesY = CharWidth, CharHeight -- change this to how many tiles you want across X and Y
+
+		-- size of each tile so they exactly fill the background
+		local tileSize = Vector3.new(
+			bgSize.X / tilesX,
+			bgSize.Y / tilesY,
+			0.06 -- thin depth
+		)
+
+		for x = 1, tilesX do
+			for y = 1, tilesY do
+				local distort = script.distort:Clone()
+				distort.Size = tileSize
+
+				-- position offset from background center
+				local offset =
+					Vector3.new((x - (tilesX / 2 + 0.5)) * tileSize.X, (y - (tilesY / 2 + 0.5)) * tileSize.Y, 0.1)
+
+				distort.CFrame = self.Background.CFrame * CFrame.new(offset)
+				Weld(distort, self.Background)
+				distort.Parent = self.Model
+			end
 		end
 	end
 
