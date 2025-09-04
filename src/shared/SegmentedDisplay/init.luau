@@ -56,9 +56,8 @@ function Display.new(
 
 	if Options and Options.GlassDistortion then
 		local bgSize = self.Background.Size
-		local tilesX, tilesY = CharWidth, CharHeight -- change this to how many tiles you want across X and Y
+		local tilesX, tilesY = CharWidth, CharHeight
 
-		-- size of each tile so they exactly fill the background
 		local tileSize = Vector3.new(
 			bgSize.X / tilesX,
 			bgSize.Y / tilesY,
@@ -70,7 +69,6 @@ function Display.new(
 				local distort = script.distort:Clone()
 				distort.Size = tileSize
 
-				-- position offset from background center
 				local offset =
 					Vector3.new((x - (tilesX / 2 + 0.5)) * tileSize.X, (y - (tilesY / 2 + 0.5)) * tileSize.Y, 0.1)
 
