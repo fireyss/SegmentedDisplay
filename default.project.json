@@ -1,0 +1,80 @@
+{
+  "name": "QuadTree",
+  "tree": {
+    "$className": "DataModel",
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Brightness": 2.0,
+        "ExtendLightRangeTo120": {
+          "Enum": 0
+        },
+        "GlobalShadows": true,
+        "LightingStyle": "Soft",
+        "Outlines": false,
+        "PrioritizeLightingQuality": false,
+        "Technology": "Voxel"
+      }
+    },
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "AudioPlayerVolumeFix": {
+          "Enum": 0
+        },
+        "RespectFilteringEnabled": true
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      },
+      "$properties": {
+        "ClassicDeath": {
+          "Bool": true
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "AirTurbulenceIntensity": {
+          "Float32": 0.0
+        },
+        "AuthorityMode": {
+          "Enum": 1
+        },
+        "CollisionGroupData": {
+          "BinaryString": "AQMABPv///8HRGVmYXVsdAEE+////xBTdHVkaW9TZWxlY3RhYmxlAgT8////H1BsdWdpbl9TdHVkaW9Ud2Vha3NfQm91bmRpbmdCb3g="
+        },
+        "FilteringEnabled": true,
+        "LuauTypeCheckMode": {
+          "Enum": 0
+        },
+        "UseImprovedModelLod": {
+          "Enum": 0
+        },
+        "UseNewLuauTypeSolver": {
+          "Enum": 0
+        }
+      },
+      "$attributes": {
+        "Rojo_Target_CurrentCamera": "5d6220badfab50a708cb2a360000036f"
+      }
+    }
+  }
+}
