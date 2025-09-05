@@ -56,13 +56,9 @@ function Display.new(
 
 	if Options and Options.GlassDistortion then
 		local bgSize = self.Background.Size
-		local tilesX, tilesY = CharWidth, CharHeight
+		local tilesX, tilesY = 1, CharHeight
 
-		local tileSize = Vector3.new(
-			bgSize.X / tilesX,
-			bgSize.Y / tilesY,
-			0.06 -- thin depth
-		)
+		local tileSize = Vector3.new(bgSize.X / tilesX, bgSize.Y / tilesY, 0.15)
 
 		for x = 1, tilesX do
 			for y = 1, tilesY do
@@ -70,7 +66,7 @@ function Display.new(
 				distort.Size = tileSize
 
 				local offset =
-					Vector3.new((x - (tilesX / 2 + 0.5)) * tileSize.X, (y - (tilesY / 2 + 0.5)) * tileSize.Y, 0.1)
+					Vector3.new((x - (tilesX / 2 + 0.5)) * tileSize.X, (y - (tilesY / 2 + 0.5)) * tileSize.Y, 0.2)
 
 				distort.CFrame = self.Background.CFrame * CFrame.new(offset)
 				Weld(distort, self.Background)
@@ -109,7 +105,6 @@ local function ToggleSegment(Segment: typeof(SegmentTemplate), Character: string
 end
 
 function Display:Write(message: string)
-	message = message:upper()
 	local segmentindex = 1
 	local i = 0
 	while true do
